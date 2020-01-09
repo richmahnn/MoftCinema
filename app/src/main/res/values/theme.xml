@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--Base theme, all common styling here-->
+    <style name="Base.Moft" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+
+        <!--Material type attributes-->
+        <item name="textAppearanceHeadline1">@style/TextAppearance.Moft.Headline1</item>
+        <item name="textAppearanceHeadline2">@style/TextAppearance.Moft.Headline2</item>
+        <item name="textAppearanceHeadline3">@style/TextAppearance.Moft.Headline3</item>
+        <item name="textAppearanceHeadline4">@style/TextAppearance.Moft.Headline4</item>
+        <item name="textAppearanceHeadline5">@style/TextAppearance.Moft.Headline5</item>
+        <item name="textAppearanceHeadline6">@style/TextAppearance.Moft.Headline6</item>
+        <item name="textAppearanceSubtitle1">@style/TextAppearance.Moft.Subtitle1</item>
+        <item name="textAppearanceSubtitle2">@style/TextAppearance.Moft.Subtitle2</item>
+        <item name="textAppearanceBody1">@style/TextAppearance.Moft.Body1</item>
+        <item name="textAppearanceBody2">@style/TextAppearance.Moft.Body2</item>
+        <item name="textAppearanceButton">@style/TextAppearance.Moft.Button</item>
+        <item name="textAppearanceCaption">@style/TextAppearance.Moft.Caption</item>
+        <item name="textAppearanceOverline">@style/TextAppearance.Moft.Overline</item>
+
+    </style>
+
+    <style name="Moft" parent="@style/Base.Moft"/>
+
+    <style name="Moft.Base">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+</resources>
