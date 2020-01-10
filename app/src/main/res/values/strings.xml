@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">MoftCinema</string>
+    <string name="trending_movies">Now Showing</string>
+    <string name="popular_movies">Popular</string>
+    <string name="coming_soon_movies">Coming Soon</string>
+    <string name="search_a_movie_hint">Search a movie</string>
+</resources>
