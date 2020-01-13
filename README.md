@@ -3,9 +3,9 @@
 MoftCinema is based on Kotlin, MVVM architecture, rxJava, dagger, Dagger 2 & material designs.
 ## Previews
 <p align="center">
-<img src="/art/image1.gif" width="32%"/>
-<img src="/art/image2.gif" width="32%"/>
-<img src="/art/image1.gif" width="32%"/>
+<img src="/art/image1.png" width="32%"/>
+<img src="/art/image2.png" width="32%"/>
+<img src="/art/image1.png" width="32%"/>
 </p>
 
 ## What Open API Used?
