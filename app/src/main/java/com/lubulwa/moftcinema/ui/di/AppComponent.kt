@@ -2,6 +2,7 @@ package com.lubulwa.moftcinema.ui.di
 
 import android.app.Application
 import com.lubulwa.moftcinema.Moft
+import com.lubulwa.moftcinema.ui.di.modules.*
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector
@@ -11,7 +12,12 @@ import javax.inject.Singleton
 @Singleton
 @Component(modules = [
     AndroidSupportInjectionModule::class,
-    AppModule::class
+    ApplicationModule::class,
+    UiModule::class,
+    PresentationModule::class,
+    DomainModule::class,
+    DataModule::class,
+    RemoteModule::class
 ])
 interface AppComponent : AndroidInjector<Moft> {
 

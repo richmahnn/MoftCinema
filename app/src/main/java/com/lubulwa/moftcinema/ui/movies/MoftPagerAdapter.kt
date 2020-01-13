@@ -6,8 +6,9 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.lubulwa.moftcinema.R
 import com.lubulwa.moftcinema.ui.movies.trending.TrendingMoviesFragment
+import javax.inject.Inject
 
-class MoftPagerAdapter(context: Context, fm: FragmentManager) : FragmentPagerAdapter(fm) {
+class MoftPagerAdapter @Inject constructor(context: Context, fm: FragmentManager) : FragmentPagerAdapter(fm) {
 
     private val mContext: Context = context
 
