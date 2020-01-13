@@ -57,7 +57,7 @@ object MovieServiceFactory {
             val url = chain.request()
                 .url
                 .newBuilder()
-                .addQueryParameter("api_key", BuildConfig.TMDB_API_KEY)
+                .addQueryParameter("api_key", Constants.TMDB_API_KEY)
                 .build()
 
             val request = chain.request()
