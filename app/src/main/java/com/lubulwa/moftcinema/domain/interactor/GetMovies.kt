@@ -16,7 +16,7 @@ class GetMovies @Inject constructor(
     postExecutionThread: PostExecutionThread
 ) : FlowableUseCase<List<MoftMovie>, Void?>(threadExecutor, postExecutionThread) {
 
-    override fun buildUseCaseObservable(params: Void?): Flowable<List<MoftMovie>> {
+    public override fun buildUseCaseObservable(params: Void?): Flowable<List<MoftMovie>> {
         return moviesRepository.getTrendingMovies()
     }
 

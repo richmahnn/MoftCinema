@@ -3,12 +3,11 @@ package com.lubulwa.moftcinema.presentation.trending
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.lubulwa.cleanarchsample.presentation.data.MoftResource
-import com.lubulwa.cleanarchsample.presentation.data.ResourceState
+import com.lubulwa.moftcinema.presentation.resource.MoftResource
+import com.lubulwa.moftcinema.presentation.resource.ResourceState
 import com.lubulwa.moftcinema.domain.interactor.GetMovies
 import com.lubulwa.moftcinema.remote.model.MoftMovie
 import io.reactivex.subscribers.DisposableSubscriber
-import timber.log.Timber
 import javax.inject.Inject
 
 class TrendingMoviesViewModel @Inject constructor(private val getMovies: GetMovies) : ViewModel() {

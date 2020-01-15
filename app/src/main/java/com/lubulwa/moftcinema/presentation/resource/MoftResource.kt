@@ -1,4 +1,4 @@
-package com.lubulwa.cleanarchsample.presentation.data
+package com.lubulwa.moftcinema.presentation.resource
 
 open class MoftResource<out T> constructor(val status: ResourceState, val data: T?, val message: String?) {
 

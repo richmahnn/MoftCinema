@@ -1,9 +1,11 @@
 package com.lubulwa.moftcinema.utils
 
 import com.lubulwa.moftcinema.remote.model.MoftMovie
+import com.lubulwa.moftcinema.remote.model.MovieResponse
+import java.util.concurrent.ThreadLocalRandom
 
 object TestMockData {
-    fun getTrendingMovies(): List<MoftMovie> {
+    fun getTrendingMovies(): MovieResponse {
         val movies = ArrayList<MoftMovie>()
         val genresId = arrayListOf(35, 18, 10749)
         movies.add(
@@ -24,7 +26,15 @@ object TestMockData {
                 2184
             )
         )
-        return movies
+        return MovieResponse(randomInt(), movies, randomInt(), randomInt())
+    }
+
+    fun getTrendingMoviesEmptyList(): MovieResponse {
+        return MovieResponse(randomInt(), emptyList(), randomInt(), randomInt())
+    }
+
+    fun randomInt(): Int {
+        return ThreadLocalRandom.current().nextInt(0, 1000 + 1)
     }
 
 
