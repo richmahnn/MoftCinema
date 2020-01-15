@@ -7,8 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.lubulwa.cleanarchsample.presentation.data.ResourceState
+import com.lubulwa.moftcinema.presentation.resource.ResourceState
 
 import com.lubulwa.moftcinema.R
 import com.lubulwa.moftcinema.presentation.ViewModelProviderFactory
@@ -16,7 +15,6 @@ import com.lubulwa.moftcinema.presentation.trending.TrendingMoviesViewModel
 import com.lubulwa.moftcinema.remote.model.MoftMovie
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.trending_movies_fragment.*
-import timber.log.Timber
 import javax.inject.Inject
 
 class TrendingMoviesFragment : DaggerFragment() {
