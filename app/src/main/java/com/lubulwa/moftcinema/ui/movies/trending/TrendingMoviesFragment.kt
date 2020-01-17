@@ -83,6 +83,7 @@ class TrendingMoviesFragment : DaggerFragment() {
         viewModel.observeTrendingMovies().observe(this, Observer {
             if (it != null) this.handleDataState(it.status, it.data, it.message)
         })
+        viewModel.fetchMovies()
     }
 
 }
