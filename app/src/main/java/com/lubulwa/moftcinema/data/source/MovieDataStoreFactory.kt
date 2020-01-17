@@ -7,7 +7,8 @@ import javax.inject.Inject
  * Create an instance of a MovieDataStore
  */
 open class MovieDataStoreFactory @Inject constructor(
-    private val movieRemoteDataStore: MovieRemoteDataStore) {
+    private val movieRemoteDataStore: MovieRemoteDataStore
+) {
 
     /**
      * Returns a DataStore based on whether or not there is content in the cache and the cache
