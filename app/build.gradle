@@ -6,15 +6,7 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
 
-apply plugin: 'jacoco-android'
-
-jacoco {
-    toolVersion = "0.8.4"
-}
-
-tasks.withType(Test) {
-    jacoco.includeNoLocationClasses = true
-}
+apply plugin: 'jacoco'
 
 android {
     compileSdkVersion 29
@@ -148,6 +140,8 @@ dependencies {
     implementation "com.jakewharton.timber:timber:$timber_version"
 
     // -------- LOCAL UNIT TESTS (use JUnit5)
+    androidTestUtil 'androidx.test:orchestrator:1.2.0'
+
     // JUnit Jupiter
     def junit_jupiter_version = "5.3.2"
     testImplementation "org.junit.jupiter:junit-jupiter-api:$junit_jupiter_version"
@@ -162,4 +156,31 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     testImplementation 'org.junit.jupiter:junit-jupiter-api'
+}
+
+jacoco {
+    toolVersion = "0.8.4"
+}
+
+tasks.withType(Test) {
+    jacoco.includeNoLocationClasses = true
+}
+
+task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest', 'createDebugCoverageReport']) {
+
+    reports {
+        xml.enabled = false
+        html.enabled = true
+        csv.enabled = false
+    }
+
+    def fileFilter = [ '**/R.class', '**/R$*.class', '**/BuildConfig.*', '**/Manifest*.*', '**/*Test*.*', 'android/**/*.*' ]
+    def debugTree = fileTree(dir: "$project.buildDir/tmp/kotlin-classes/debug", excludes: fileFilter)
+    def mainSrc = "$project.projectDir/src/main/java"
+
+    sourceDirectories = files([mainSrc])
+    classDirectories = files([debugTree])
+    executionData = fileTree(dir: project.buildDir, includes: [
+            'jacoco/testDebugUnitTest.exec', 'outputs/code-coverage/connected/*coverage.ec'
+    ])
 }
