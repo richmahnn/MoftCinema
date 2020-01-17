@@ -17,6 +17,7 @@ import org.mockito.Mockito.`when`
 import org.mockito.MockitoAnnotations
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+@ExtendWith(InstantExecutorExtension::class)
 internal class MoftDataRepositoryTest {
 
     @Mock
