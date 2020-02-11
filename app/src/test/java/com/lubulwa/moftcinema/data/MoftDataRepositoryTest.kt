@@ -6,13 +6,11 @@ import com.lubulwa.moftcinema.utils.InstantExecutorExtension
 import com.lubulwa.moftcinema.utils.TestMockData
 import io.reactivex.Flowable
 import org.junit.jupiter.api.BeforeEach
-
-import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
 import org.junit.jupiter.api.extension.ExtendWith
+import org.mockito.ArgumentMatchers
 import org.mockito.Mock
-import org.mockito.Mockito
 import org.mockito.Mockito.`when`
 import org.mockito.MockitoAnnotations
 
@@ -40,9 +38,9 @@ internal class MoftDataRepositoryTest {
     fun `fetch trending movies completes`() {
         val response = TestMockData.getTrendingMovies()
         `when`(factory.retrieveDataStore()).thenReturn(movieDataStore)
-        `when`(movieDataStore.getTrendingMovies()).thenReturn(Flowable.just(response.moftMovies))
+        `when`(movieDataStore.getTrendingMovies(ArgumentMatchers.anyInt())).thenReturn(Flowable.just(response.moftMovies))
 
-        val testObserver = repo.getTrendingMovies().test()
+        val testObserver = repo.getTrendingMovies(TestMockData.randomInt()).test()
 
         testObserver.assertComplete()
     }
@@ -51,9 +49,9 @@ internal class MoftDataRepositoryTest {
     fun `fetch trending movies returns data`() {
         val response = TestMockData.getTrendingMovies()
         `when`(factory.retrieveDataStore()).thenReturn(movieDataStore)
-        `when`(movieDataStore.getTrendingMovies()).thenReturn(Flowable.just(response.moftMovies))
+        `when`(movieDataStore.getTrendingMovies(ArgumentMatchers.anyInt())).thenReturn(Flowable.just(response.moftMovies))
 
-        val testObserver = repo.getTrendingMovies().test()
+        val testObserver = repo.getTrendingMovies(TestMockData.randomInt()).test()
         testObserver.assertValue(response.moftMovies)
     }
 

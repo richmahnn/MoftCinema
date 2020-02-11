@@ -6,7 +6,7 @@ import io.reactivex.Single
 
 interface MovieDataStore {
 
-    fun getTrendingMovies(): Flowable<List<MoftMovie>>
+    fun getTrendingMovies(page: Int): Flowable<List<MoftMovie>>
 
     fun isCached(): Single<Boolean>
 

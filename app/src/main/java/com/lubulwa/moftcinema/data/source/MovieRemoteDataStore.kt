@@ -16,8 +16,8 @@ class MovieRemoteDataStore @Inject constructor(private val movieRemote: MovieRem
     /**
      * Retrieve a list of [MoftMovie] instances from the API
      */
-    override fun getTrendingMovies(): Flowable<List<MoftMovie>> {
-        return movieRemote.getTrendingMovies()
+    override fun getTrendingMovies(page: Int): Flowable<List<MoftMovie>> {
+        return movieRemote.getTrendingMovies(page)
     }
 
     override fun isCached(): Single<Boolean> {

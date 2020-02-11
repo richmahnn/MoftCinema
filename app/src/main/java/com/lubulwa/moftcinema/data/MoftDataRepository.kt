@@ -12,8 +12,8 @@ import javax.inject.Inject
  */
 class MoftDataRepository @Inject constructor(private val factory: MovieDataStoreFactory) : MoviesRepository  {
 
-    override fun getTrendingMovies(): Flowable<List<MoftMovie>> {
-        return factory.retrieveDataStore().getTrendingMovies()
+    override fun getTrendingMovies(page: Int): Flowable<List<MoftMovie>> {
+        return factory.retrieveDataStore().getTrendingMovies(page)
     }
 
 }

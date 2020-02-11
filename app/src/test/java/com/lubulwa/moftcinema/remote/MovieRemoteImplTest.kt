@@ -37,11 +37,11 @@ internal class MovieRemoteImplTest {
     @Test
     fun `fetch movies returns a list of movies`() {
         val response = TestMockData.getTrendingMovies()
-        `when`(movieService.getTrendingMovies()).thenReturn(Flowable.just(response))
+        `when`(movieService.getTrendingMovies(ArgumentMatchers.anyInt())).thenReturn(Flowable.just(response))
 
-        val result = movieRemoteImp.getTrendingMovies().blockingFirst()
+        val result = movieRemoteImp.getTrendingMovies(ArgumentMatchers.anyInt()).blockingFirst()
 
-        verify(movieService).getTrendingMovies()
+        verify(movieService).getTrendingMovies(ArgumentMatchers.anyInt())
 
         assertTrue(result.isNotEmpty())
     }
@@ -49,11 +49,11 @@ internal class MovieRemoteImplTest {
     @Test
     fun `fetch movies returns an empty list`() {
         val response = TestMockData.getTrendingMoviesEmptyList()
-        `when`(movieService.getTrendingMovies()).thenReturn(Flowable.just(response))
+        `when`(movieService.getTrendingMovies(ArgumentMatchers.anyInt())).thenReturn(Flowable.just(response))
 
-        val result = movieRemoteImp.getTrendingMovies().blockingFirst()
+        val result = movieRemoteImp.getTrendingMovies(ArgumentMatchers.anyInt()).blockingFirst()
 
-        verify(movieService).getTrendingMovies()
+        verify(movieService).getTrendingMovies(ArgumentMatchers.anyInt())
 
         assertTrue(result.isEmpty())
     }

@@ -14,10 +14,11 @@ class GetMovies @Inject constructor(
     private val moviesRepository: MoviesRepository,
     threadExecutor: ThreadExecutor,
     postExecutionThread: PostExecutionThread
-) : FlowableUseCase<List<MoftMovie>, Void?>(threadExecutor, postExecutionThread) {
+) : FlowableUseCase<List<MoftMovie>, Int>(threadExecutor, postExecutionThread) {
 
-    public override fun buildUseCaseObservable(params: Void?): Flowable<List<MoftMovie>> {
-        return moviesRepository.getTrendingMovies()
+    public override fun buildUseCaseObservable(params: Int?): Flowable<List<MoftMovie>> {
+        return moviesRepository.getTrendingMovies(params ?: 1)
     }
+
 
 }

@@ -19,10 +19,10 @@ class TrendingMoviesViewModel @Inject constructor(private val getMovies: GetMovi
         return moviesLiveData
     }
 
-    fun fetchMovies() {
+    fun fetchMovies(pageNumber: Int) {
         moviesLiveData.postValue(MoftResource(ResourceState.LOADING, null, null))
 
-        disposable = getMovies.execute().subscribe({
+        disposable = getMovies.execute(pageNumber).subscribe({
             moviesLiveData.postValue(MoftResource(ResourceState.SUCCESS, it, null))
         }, {
             moviesLiveData.postValue(MoftResource(ResourceState.ERROR, null, it.localizedMessage))

@@ -10,6 +10,6 @@ import io.reactivex.Flowable
  */
 interface MoviesRepository {
 
-    fun getTrendingMovies(): Flowable<List<MoftMovie>>
+    fun getTrendingMovies(page: Int): Flowable<List<MoftMovie>>
 
 }

@@ -9,9 +9,9 @@ import io.reactivex.Flowable
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
+import org.mockito.ArgumentMatchers
 import org.mockito.Mock
-import org.mockito.Mockito.`when`
-import org.mockito.Mockito.verify
+import org.mockito.Mockito.*
 import org.mockito.MockitoAnnotations
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -28,6 +28,8 @@ internal class GetMoviesTest {
 
     private lateinit var getMovies: GetMovies
 
+    private val pageNumber = TestMockData.randomInt()
+
     @BeforeEach
     fun setUp() {
         MockitoAnnotations.initMocks(this)
@@ -38,15 +40,15 @@ internal class GetMoviesTest {
 
     @Test
     fun `buildUseCaseObservable calls repository`() {
-        getMovies.buildUseCaseObservable(null)
-        verify(moviesRepository).getTrendingMovies()
+        getMovies.buildUseCaseObservable(pageNumber)
+        verify(moviesRepository).getTrendingMovies(pageNumber)
     }
 
     @Test
     fun `buildUseCaseObservable completes`() {
         stubMoviesRepositoryGetMovies()
 
-        val testObserver = getMovies.buildUseCaseObservable(null).test()
+        val testObserver = getMovies.buildUseCaseObservable(pageNumber).test()
         testObserver.assertComplete()
     }
 
@@ -54,13 +56,13 @@ internal class GetMoviesTest {
     fun `buildUseCaseObservable returns data`() {
         val response = stubMoviesRepositoryGetMovies()
 
-        val testObserver = getMovies.buildUseCaseObservable(null).test()
+        val testObserver = getMovies.buildUseCaseObservable(pageNumber).test()
         testObserver.assertValue(response.moftMovies)
     }
 
     private fun stubMoviesRepositoryGetMovies(): MovieResponse {
         val response = TestMockData.getTrendingMovies()
-        `when`(moviesRepository.getTrendingMovies()).thenReturn(Flowable.just(response.moftMovies))
+        `when`(moviesRepository.getTrendingMovies(pageNumber)).thenReturn(Flowable.just(response.moftMovies))
         return response
     }
 

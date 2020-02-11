@@ -7,6 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.lubulwa.moftcinema.R
 import com.lubulwa.moftcinema.remote.model.MoftMovie
@@ -30,10 +31,15 @@ class TrendingMoviesAdapter @Inject constructor() : RecyclerView.Adapter<Trendin
         holder.genresText.text = movie.genreIds.toString()
         holder.movieGenres.text = movie.voteAverage.toString()
 
-        Glide.with(holder.itemView.context)
-            .load(movie.posterPath)
+        val requestOptions = RequestOptions()
             .apply(RequestOptions.centerCropTransform())
             .apply(RequestOptions.timeoutOf(6000))
+            .override(200, 250)
+            .diskCacheStrategy(DiskCacheStrategy.ALL)
+
+        Glide.with(holder.itemView.context)
+            .load(movie.posterPath)
+            .apply(requestOptions)
             .into(holder.avatarImage)
     }
 

@@ -15,11 +15,8 @@ import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
 import org.junit.jupiter.api.extension.ExtendWith
-import org.mockito.ArgumentCaptor
-import org.mockito.Captor
-import org.mockito.Mock
+import org.mockito.*
 import org.mockito.Mockito.*
-import org.mockito.MockitoAnnotations
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @ExtendWith(InstantExecutorExtension::class)
@@ -157,12 +154,12 @@ internal class TrendingMoviesViewModelTests {
     }
 
     private fun stubGetMoviesSuccess() {
-        `when`(getMovies.execute()).thenReturn(Flowable.just(TestMockData.getTrendingMovies().moftMovies))
+        `when`(getMovies.execute(ArgumentMatchers.anyInt())).thenReturn(Flowable.just(TestMockData.getTrendingMovies().moftMovies))
         viewModel.fetchMovies()
     }
 
     private fun stubGetMoviesError() {
-        `when`(getMovies.execute()).thenReturn(Flowable.error(Throwable("Error occurred!")))
+        `when`(getMovies.execute(ArgumentMatchers.anyInt())).thenReturn(Flowable.error(Throwable("Error occurred!")))
         viewModel.fetchMovies()
     }
 

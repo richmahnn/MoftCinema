@@ -1,5 +1,6 @@
 package com.lubulwa.moftcinema.ui.movies.trending
 
+import android.content.Intent
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,6 +14,7 @@ import com.lubulwa.moftcinema.R
 import com.lubulwa.moftcinema.presentation.ViewModelProviderFactory
 import com.lubulwa.moftcinema.presentation.trending.TrendingMoviesViewModel
 import com.lubulwa.moftcinema.remote.model.MoftMovie
+import com.lubulwa.moftcinema.ui.movies.HomeActivity
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.trending_movies_fragment.*
 import javax.inject.Inject
@@ -43,12 +45,15 @@ class TrendingMoviesFragment : DaggerFragment() {
     }
 
     private fun setupTrendingMoviesList() {
-        rv_trending_movies.layoutManager = GridLayoutManager(activity, 2)
+        rv_trending_movies.layoutManager = GridLayoutManager(activity, 3)
         rv_trending_movies.adapter = trendingMoviesAdapter
+        rv_trending_movies.setHasFixedSize(true)
     }
 
     private fun setupViewListeners() {
-
+//        Intent(activity, HomeActivity::class.java).also {
+//            startActivity(it)
+//        }
     }
 
     private fun handleDataState(state: ResourceState, data: List<MoftMovie>?, message: String?) {
@@ -83,7 +88,7 @@ class TrendingMoviesFragment : DaggerFragment() {
         viewModel.observeTrendingMovies().observe(this, Observer {
             if (it != null) this.handleDataState(it.status, it.data, it.message)
         })
-        viewModel.fetchMovies()
+        viewModel.fetchMovies(3)
     }
 
 }

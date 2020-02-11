@@ -12,6 +12,6 @@ interface MovieRemote {
     /**
      * Retrieve a list of trending Movies, from the cache
      */
-    fun getTrendingMovies(): Flowable<List<MoftMovie>>
+    fun getTrendingMovies(page: Int): Flowable<List<MoftMovie>>
 
 }

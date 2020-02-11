@@ -15,8 +15,8 @@ class MovieRemoteImpl @Inject constructor(
     private val movieService: MovieService
 ) : MovieRemote {
 
-    override fun getTrendingMovies(): Flowable<List<MoftMovie>> {
-        return movieService.getTrendingMovies()
+    override fun getTrendingMovies(page: Int): Flowable<List<MoftMovie>> {
+        return movieService.getTrendingMovies(page)
             .map {
                 val movies = mutableListOf<MoftMovie>()
                 it.moftMovies.forEach {
