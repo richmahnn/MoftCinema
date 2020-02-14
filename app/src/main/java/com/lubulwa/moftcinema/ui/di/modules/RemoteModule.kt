@@ -1,5 +1,7 @@
 package com.lubulwa.moftcinema.ui.di.modules
 
+import com.lubulwa.moftcinema.data.ItemDataSource
+import com.lubulwa.moftcinema.data.ItemDataSourceFactory
 import com.lubulwa.moftcinema.data.repository.MovieRemote
 import com.lubulwa.moftcinema.remote.MovieRemoteImpl
 import com.lubulwa.moftcinema.remote.MovieService
@@ -24,6 +26,18 @@ abstract class RemoteModule {
         @JvmStatic
         fun provideMovieService(): MovieService {
             return MovieServiceFactory.buildMovieService()
+        }
+
+        @Provides
+        @JvmStatic
+        fun provideItemDataSource(movieService: MovieService): ItemDataSource {
+            return ItemDataSource(movieService)
+        }
+
+        @Provides
+        @JvmStatic
+        fun provideItemDataSourceFactory(itemDataSource: ItemDataSource): ItemDataSourceFactory {
+            return ItemDataSourceFactory(itemDataSource)
         }
     }
 

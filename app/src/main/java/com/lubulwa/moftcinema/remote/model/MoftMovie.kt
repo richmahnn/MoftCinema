@@ -46,8 +46,7 @@ data class MoftMovie(
     companion object {
 
         @JvmStatic
-        val DIFF_CALL: DiffUtil.ItemCallback<MoftMovie> =
-            object : DiffUtil.ItemCallback<MoftMovie>() {
+        val DIFF_CALL: DiffUtil.ItemCallback<MoftMovie> = object : DiffUtil.ItemCallback<MoftMovie>() {
                 override fun areItemsTheSame(oldItem: MoftMovie, newItem: MoftMovie): Boolean {
                     return oldItem.id == newItem.id
                 }
