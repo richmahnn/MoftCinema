@@ -1,22 +1,21 @@
 package com.lubulwa.moftcinema.presentation.trending
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PageKeyedDataSource
 import androidx.paging.PagedList
-import com.lubulwa.moftcinema.data.ItemDataSourceFactory
-import com.lubulwa.moftcinema.domain.interactor.GetMovies
+import com.lubulwa.moftcinema.domain.ItemDataSourceFactory
 import com.lubulwa.moftcinema.presentation.resource.MoftResource
-import com.lubulwa.moftcinema.presentation.resource.ResourceState
 import com.lubulwa.moftcinema.remote.model.MoftMovie
 import io.reactivex.disposables.Disposable
 import javax.inject.Inject
 
+private const val PAGE_SIZE = 20
+private const val PREFETCH_DISTANCE = 10
+
 class TrendingMoviesViewModel @Inject constructor(
-    private val getMovies: GetMovies,
     private val itemDataSourceFactory: ItemDataSourceFactory
 ) : ViewModel() {
 
@@ -25,6 +24,12 @@ class TrendingMoviesViewModel @Inject constructor(
 
     lateinit var itemPagedList: LiveData<PagedList<MoftMovie>>
     private lateinit var liveDataSource: LiveData<PageKeyedDataSource<Int, MoftMovie>>
+
+    private val config = PagedList.Config.Builder()
+        .setEnablePlaceholders(true)
+        .setPageSize(PAGE_SIZE)
+        .setPrefetchDistance(PREFETCH_DISTANCE)
+        .build()
 
     fun observeTrendingMovies(): MutableLiveData<MoftResource<PagedList<MoftMovie>>> {
         return moviesLiveData
@@ -42,10 +47,6 @@ class TrendingMoviesViewModel @Inject constructor(
 
     fun fetchMoviesPaged() {
         liveDataSource = itemDataSourceFactory.itemLiveDataSource
-        val config = PagedList.Config.Builder()
-            .setPageSize(10)
-            .build()
-
         itemPagedList = LivePagedListBuilder(itemDataSourceFactory, config).build()
     }
 

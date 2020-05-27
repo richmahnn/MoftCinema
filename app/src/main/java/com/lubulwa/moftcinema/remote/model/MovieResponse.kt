@@ -9,7 +9,7 @@ data class MovieResponse(
     val page: Int,
 
     @SerializedName("results")
-    val moftMovies: List<MoftMovie>,
+    var moftMovies: List<MoftMovie>,
 
     @SerializedName("total_pages")
     val totalPages: Int,

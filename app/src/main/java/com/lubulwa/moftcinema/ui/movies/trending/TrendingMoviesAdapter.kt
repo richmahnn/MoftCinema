@@ -6,15 +6,12 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.paging.PagedListAdapter
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.lubulwa.moftcinema.R
-import com.lubulwa.moftcinema.remote.constants.Constants
 import com.lubulwa.moftcinema.remote.model.MoftMovie
-import timber.log.Timber
 import javax.inject.Inject
 
 class TrendingMoviesAdapter @Inject constructor() : PagedListAdapter<MoftMovie, TrendingMoviesAdapter.TMViewHolder>(MoftMovie.DIFF_CALL) {
@@ -41,7 +38,7 @@ class TrendingMoviesAdapter @Inject constructor() : PagedListAdapter<MoftMovie, 
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
 
             Glide.with(holder.itemView.context)
-                .load(Constants.TMDB_IMAGE_URL + movie.posterPath)
+                .load(movie.posterPath)
                 .apply(requestOptions)
                 .into(holder.avatarImage)
         }

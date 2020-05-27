@@ -3,10 +3,7 @@ package com.lubulwa.moftcinema.remote.model
 import androidx.recyclerview.widget.DiffUtil
 import com.google.gson.annotations.SerializedName
 
-
 data class MoftMovie(
-
-    val adult: Boolean,
 
     @SerializedName("backdrop_path")
     val backdropPath: String,
@@ -14,17 +11,11 @@ data class MoftMovie(
     @SerializedName("genre_ids")
     val genreIds: ArrayList<Int>,
 
-    val id: Int,
-
     @SerializedName("original_language")
     val originalLanguage: String,
 
     @SerializedName("original_title")
     val originalTitle: String,
-
-    val overview: String,
-
-    val popularity: Double,
 
     @SerializedName("poster_path")
     var posterPath: String,
@@ -32,19 +23,26 @@ data class MoftMovie(
     @SerializedName("release_date")
     val releaseDate: String,
 
-    val title: String,
-
-    val video: Boolean,
-
     @SerializedName("vote_average")
     val voteAverage: Double,
 
     @SerializedName("vote_count")
-    val voteCount: Int
+    val voteCount: Int,
+
+    val adult: Boolean,
+
+    val title: String,
+
+    val video: Boolean,
+
+    val overview: String,
+
+    val popularity: Double,
+
+    val id: Int
 ) {
 
     companion object {
-
         @JvmStatic
         val DIFF_CALL: DiffUtil.ItemCallback<MoftMovie> = object : DiffUtil.ItemCallback<MoftMovie>() {
                 override fun areItemsTheSame(oldItem: MoftMovie, newItem: MoftMovie): Boolean {

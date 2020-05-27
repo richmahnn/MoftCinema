@@ -3,6 +3,7 @@ package com.lubulwa.moftcinema.remote
 import com.lubulwa.moftcinema.remote.model.MoftMovie
 import com.lubulwa.moftcinema.data.repository.MovieRemote
 import com.lubulwa.moftcinema.remote.constants.Constants
+import com.lubulwa.moftcinema.remote.model.MovieResponse
 import io.reactivex.Flowable
 import javax.inject.Inject
 
@@ -15,7 +16,7 @@ class MovieRemoteImpl @Inject constructor(
     private val movieService: MovieService
 ) : MovieRemote {
 
-    override fun getTrendingMovies(page: Int): Flowable<List<MoftMovie>> {
+    override fun getTrendingMovies(page: Int): Flowable<MovieResponse> {
         return movieService.getTrendingMovies(page)
             .map {
                 val movies = mutableListOf<MoftMovie>()
@@ -23,7 +24,8 @@ class MovieRemoteImpl @Inject constructor(
                     it.posterPath = Constants.TMDB_IMAGE_URL + it.posterPath
                     movies.add(it)
                 }
-                return@map movies
+                it.moftMovies = movies
+                return@map it
             }
     }
 

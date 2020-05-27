@@ -3,6 +3,7 @@ package com.lubulwa.moftcinema.data.source
 import com.lubulwa.moftcinema.data.repository.MovieDataStore
 import com.lubulwa.moftcinema.data.repository.MovieRemote
 import com.lubulwa.moftcinema.remote.model.MoftMovie
+import com.lubulwa.moftcinema.remote.model.MovieResponse
 import io.reactivex.Flowable
 import io.reactivex.Single
 import javax.inject.Inject
@@ -16,7 +17,7 @@ class MovieRemoteDataStore @Inject constructor(private val movieRemote: MovieRem
     /**
      * Retrieve a list of [MoftMovie] instances from the API
      */
-    override fun getTrendingMovies(page: Int): Flowable<List<MoftMovie>> {
+    override fun getTrendingMovies(page: Int): Flowable<MovieResponse> {
         return movieRemote.getTrendingMovies(page)
     }
 

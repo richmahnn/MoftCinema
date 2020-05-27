@@ -2,6 +2,7 @@ package com.lubulwa.moftcinema.domain.interactor
 
 import com.lubulwa.moftcinema.domain.executor.PostExecutionThread
 import com.lubulwa.moftcinema.domain.executor.ThreadExecutor
+import com.lubulwa.moftcinema.remote.model.MovieResponse
 import io.reactivex.Flowable
 import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable

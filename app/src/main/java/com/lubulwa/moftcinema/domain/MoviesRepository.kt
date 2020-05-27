@@ -1,6 +1,6 @@
 package com.lubulwa.moftcinema.domain
 
-import com.lubulwa.moftcinema.remote.model.MoftMovie
+import com.lubulwa.moftcinema.remote.model.MovieResponse
 import io.reactivex.Flowable
 
 /**
@@ -10,6 +10,6 @@ import io.reactivex.Flowable
  */
 interface MoviesRepository {
 
-    fun getTrendingMovies(page: Int): Flowable<List<MoftMovie>>
+    fun getTrendingMovies(page: Int): Flowable<MovieResponse>
 
 }

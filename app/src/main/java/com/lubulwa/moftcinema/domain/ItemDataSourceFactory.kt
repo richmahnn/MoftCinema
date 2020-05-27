@@ -1,4 +1,4 @@
-package com.lubulwa.moftcinema.data
+package com.lubulwa.moftcinema.domain
 
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource
